@@ -12,7 +12,7 @@ async function findAllPaletas() {
         <div>
             <div class="PaletaListaItem__id">${paleta._id}</div>
             <div class="PaletaListaItem__sabor">${paleta.sabor}</div>
-            <div class="PaletaListaItem__preco">R$ ${paleta.preco}</div>
+            <div class="PaletaListaItem__preco">R$ ${paleta.preco.toFixed(2)}</div>
             <div class="PaletaListaItem__descricao">${paleta.descricao}</div>
             <div class="PaletaListaItem__acoes Acoes">
               <button class="Acoes__editar" onclick="abrirModalCadastro('${paleta._id}')">editar</button>
@@ -29,7 +29,7 @@ async function findAllPaletas() {
 
 findAllPaletas();
 
-async function findPaletaById() {
+const  findPaletaById = async ()  => {
     const id = document.getElementById("idPaleta").value;
     const response = await fetch(`${baseUrl}/find-paleta/${id}`);
     const paleta = await response.json();
@@ -39,6 +39,7 @@ async function findPaletaById() {
     paletaEscolhidaDiv.innerHTML = `
     <div class="PaletaCardItem">
       <div>
+      <div class="PaletaListaItem__id">${id}</div>
       <div class="PaletaCardItem__sabor">${paleta.sabor}</div>
         <div class="PaletaCardItem__preco">R$ ${paleta.preco}</div>
         <div class="PaletaCardItem__descricao">${paleta.descricao}</div>
